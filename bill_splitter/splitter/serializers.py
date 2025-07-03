@@ -17,10 +17,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 class BillSerializer(serializers.ModelSerializer):
     paid_by = UserSerializer(read_only=True)
+    splits = serializers.SerializerMethodField()
     
     class Meta:
         model = Bill
-        fields = ['id', 'title', 'amount', 'date', 'paid_by']
+        fields = ['id', 'title', 'amount', 'date', 'paid_by', 'splits']
+    
+    def get_splits(self, obj):
+        splits = Split.objects.filter(bill=obj)
+        return SplitSerializer(splits, many=True).data
+    
 
 class SplitSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)

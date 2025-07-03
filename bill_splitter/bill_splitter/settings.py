@@ -77,7 +77,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'bill_splitter.wsgi.application'
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # For development
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
