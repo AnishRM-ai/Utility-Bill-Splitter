@@ -9,6 +9,6 @@ router.register(r'splits', SplitViewSet, basename='split')
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api/register/', RegisterView.as_view(), name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
     
 ]
